@@ -5,8 +5,8 @@ No build step is required to view or deploy it — plain HTML, CSS and one small
 with Inter Tight self-hosted so nothing is fetched from a CDN.
 
 Layout: a landing page with the name, a short bio and a three-column grid of all eight
-works (two columns under 1040 px, one under 700 px); each work then has its own page — hero image, three-column title block,
-abstract, and the portfolio spreads as full-width plates. Pure white ground
+works (two columns under 1040 px, one under 700 px); each work then has its own page —
+three-column title block, abstract, and the portfolio spreads as full-width plates. Pure white ground
 throughout, square corners, hairline frames around every image.
 
 ```
@@ -23,14 +23,12 @@ favicon.svg
 assets/
   css/site.css        Whole design system
   fonts/*.woff2       Inter Tight, self-hosted (no external requests at runtime)
-  js/site.js          Lightbox — click the hero or any plate, arrow keys to page,
+  js/site.js          Plate lightbox — click any plate, arrow keys to page,
                       Esc to close
   pages/pNN.jpg       Portfolio page NN rendered at 1998 px wide  (full-res view)
   thumbs/pNN.jpg      Same page at 760 px                        (small screens)
   cards/*.jpg         1200x1200 square tile for each project — the artwork from
                       that project's own opening page, fitted on white. Index grid.
-  art/*.jpg           The same artwork at its natural aspect, uncropped. Used for
-                      the project-page hero, which is capped at 640 px tall.
 build.py              Regenerates all nine HTML files from the ENTRIES list inside it
 ```
 
@@ -67,7 +65,7 @@ Then in the repo: **Settings → Pages → Source: Deploy from a branch → `mai
 The site appears at `https://<user>.github.io/<repo>/`.
 Naming the repo `<user>.github.io` instead publishes it at the bare domain.
 
-Total asset weight is about 14 MB, well inside GitHub Pages limits.
+Total asset weight is about 13 MB, well inside GitHub Pages limits.
 
 ## Not included
 

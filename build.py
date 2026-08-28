@@ -146,7 +146,7 @@ WORKS = [
         ],
     ),
     dict(
-        slug="shelter.html", num="06", kind="Selected Work", hero_is_page=True,
+        slug="shelter.html", num="06", kind="Selected Work",
         title="SHELTER",
         sub="From vulnerability to resilience — form derived from body motion",
         card="shelter.jpg",
@@ -187,7 +187,7 @@ WORKS = [
         ],
     ),
     dict(
-        slug="reading-the-heritage.html", num="08", kind="Selected Work", hero_is_page=True,
+        slug="reading-the-heritage.html", num="08", kind="Selected Work",
         title="Reading the Heritage",
         sub="A timber-frame survey redrawn as an exploded reading",
         card="heritage.jpg",
@@ -312,15 +312,9 @@ def card(p):
 
 # ------------------------------------------------------------- entry pages
 for i, p in enumerate(ENTRIES):
-    rest = p["plates"][1:] if p.get("hero_is_page") else p["plates"]
+    rest = p["plates"]
     doc = [head("%s — %s" % (p["title"], NAME), p["sub"])]
-    doc.append('<main>\n\n<section class="wrap phero">')
-    doc.append('  <button type="button" class="phero__img" data-full="assets/pages/p%02d.jpg" data-caption="%s">'
-               '<img src="assets/art/%s" alt="%s"></button>'
-               % (p["plates"][0][0], e(p["title"] + " — opening page"), p["card"], e(p["card_alt"])))
-    doc.append("</section>\n")
-
-    doc.append('<section class="wrap titleblock">')
+    doc.append('<main>\n\n<section class="wrap titleblock">')
     doc.append("  <div>\n    <h1>%s</h1>\n    <p class=\"sub\">%s</p>\n    <p class=\"tags\">%s</p>\n  </div>"
                % (e(p["title"]), e(p["sub"]), e(p["tags"])))
     half = (len(p["meta"]) + 1) // 2
