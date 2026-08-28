@@ -8,6 +8,7 @@ import os, html
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 NAME = "Zining Liu"
+ASSET_V = "2"   # bump when an image is replaced, to bypass browser caches
 
 NAV = [
     ("liweaving.html",    "01 LiWeaving"),
@@ -231,8 +232,8 @@ FOOT = """
 
 
 def plate(pg, label, caption):
-    src = "assets/pages/p%02d.jpg" % pg
-    thumb = "assets/thumbs/p%02d.jpg" % pg
+    src = "assets/pages/p%02d.jpg?v=%s" % (pg, ASSET_V)
+    thumb = "assets/thumbs/p%02d.jpg?v=%s" % (pg, ASSET_V)
     return """      <figure class="plate">
         <button type="button" data-full="%s" data-caption="%s">
           <img src="%s" srcset="%s 760w, %s 1998w" sizes="(max-width: 900px) 92vw, 1160px"
@@ -254,12 +255,12 @@ def pager(i):
 
 def card(p):
     return """    <a class="card" href="%s">
-      <div class="card__fig"><img src="assets/cards/%s" alt="%s" loading="lazy" width="1200" height="1200"></div>
+      <div class="card__fig"><img src="assets/cards/%s?v=%s" alt="%s" loading="lazy" width="1200" height="1200"></div>
       <p class="card__meta">%s <i></i> %s</p>
       <h3>%s</h3>
       <p class="card__sub">%s</p>
       <p class="card__tags">%s</p>
-    </a>""" % (p["slug"], p["card"], e(p["card_alt"]), p["year"], e(p["kind"]),
+    </a>""" % (p["slug"], p["card"], ASSET_V, e(p["card_alt"]), p["year"], e(p["kind"]),
                e(p["title"]), e(p["sub"]), e(p["tags"]))
 
 
