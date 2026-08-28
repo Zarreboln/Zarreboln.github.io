@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Humanizing Mixed Reality — Zining Liu</title>
+<meta name="description" content="Interactive design with behavioral computation">
+<meta property="og:title" content="Humanizing Mixed Reality — Zining Liu">
+<meta property="og:description" content="Interactive design with behavioral computation">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Zining Liu</a>
+    <nav class="nav" aria-label="Primary">
+        <a href="index.html#works">Works</a>
+        <a href="index.html#about">About</a>
+        <a href="mailto:ziningl@mit.edu">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap phero">
+  <button type="button" class="phero__img" data-full="assets/pages/p18.jpg" data-caption="Humanizing Mixed Reality — opening page"><img src="assets/art/bodymr.jpg" alt="Wireframe drawing of generated shell roof forms built from dense coloured lines"></button>
+</section>
+
+<section class="wrap titleblock">
+  <div>
+    <h1>Humanizing Mixed Reality</h1>
+    <p class="sub">Interactive design with behavioral computation</p>
+    <p class="tags">Behavioral computation, pix2pix GAN, mixed reality, depth sensing</p>
+  </div>
+  <dl>
+      <dt>Location</dt><dd>Tianjin, China</dd>
+      <dt>Date</dt><dd>Jun. – Jul. 2025</dd>
+      <dt>Instructor</dt><dd>Chao Yan (Tongji University)</dd>
+  </dl>
+  <dl>
+      <dt>My role</dt><dd>50% Group conceptual design<br>70% Module development<br>50% User study</dd>
+      <dt>Group member</dt><dd>Zining Liu, Yiying Wang, Leding Hu, Lu Xu, Yifan Xu</dd>
+  </dl>
+</section>
+
+<section class="wrap"><p class="note"><b>Note:</b> Tracked with ZED depth cameras (34 skeletal keypoints per person) and visualised on a Quest 3 headset.</p></section>
+
+<section class="wrap body">
+  <h2>Abstract</h2>
+  <p>BodyMR is an embodied interaction system that translates real-time social behaviors into spatial form. Using ZED depth cameras, the system tracks participants’ movements and extracts 34 three-dimensional skeletal keypoints per individual. Socially intensified interactions are computed and accumulated into dynamic social heatmaps, revealing latent socio-behavioral structures within small-scale environments.</p>
+  <p>A paired dataset of heatmaps and roof geometries is then used to train a conditional pix2pix GAN, enabling the generation of architectural roof forms driven by social interaction patterns. These forms are visualised in real time through an XR environment using a Quest 3 headset, allowing users to perceive how their everyday social relationships are algorithmically embedded into spatial configurations.</p>
+</section>
+
+<section class="wrap plates">
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p18.jpg" data-caption="Project statement">
+          <img src="assets/thumbs/p18.jpg" srcset="assets/thumbs/p18.jpg 760w, assets/pages/p18.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Project statement" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Overview</b> &mdash; Project statement</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p19.jpg" data-caption="Five indices — distance proximity, velocity coherence, gaze relation, attitude engagement and micro-action evaluation — weighted into a single social-intensity field">
+          <img src="assets/thumbs/p19.jpg" srcset="assets/thumbs/p19.jpg 760w, assets/pages/p19.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Five indices — distance proximity, velocity coherence, gaze relation, attitude engagement and micro-action evaluation — weighted into a single social-intensity field" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Behavioral Computation</b> &mdash; Five indices — distance proximity, velocity coherence, gaze relation, attitude engagement and micro-action evaluation — weighted into a single social-intensity field</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p20.jpg" data-caption="Dataset of 40 roof forms paired with accumulated social heatmaps, and the pix2pix training progression">
+          <img src="assets/thumbs/p20.jpg" srcset="assets/thumbs/p20.jpg 760w, assets/pages/p20.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Dataset of 40 roof forms paired with accumulated social heatmaps, and the pix2pix training progression" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Heatmaps to Form</b> &mdash; Dataset of 40 roof forms paired with accumulated social heatmaps, and the pix2pix training progression</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p21.jpg" data-caption="The generated roof geometry perceived in situ through a Quest 3 headset">
+          <img src="assets/thumbs/p21.jpg" srcset="assets/thumbs/p21.jpg 760w, assets/pages/p21.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="The generated roof geometry perceived in situ through a Quest 3 headset" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>XR Visualization</b> &mdash; The generated roof geometry perceived in situ through a Quest 3 headset</figcaption>
+      </figure>
+</section>
+
+<nav class="wrap pager" aria-label="Project navigation">
+  <a href="soundscape.html">Previous<strong>Urban Soundscape</strong></a>
+  <a class="r" href="latent-agent.html">Next<strong>Latent Agent</strong></a>
+</nav>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="statement">Invisible. Measurable. Designable.</p>
+    <div class="foot__cols">
+      <div>
+        <span>&copy; Zining Liu 2021&ndash;2025.</span>
+        <span>All rights reserved.</span>
+      </div>
+      <div>
+        <a href="mailto:ziningl@mit.edu">ziningl@mit.edu</a>
+      </div>
+      <div>
+        <a href="index.html#works">Works</a>
+        <a href="index.html#about">About</a>
+        <a href="mailto:ziningl@mit.edu">Contact</a>
+      </div>
+      <div>
+        <span>SMArchS Computation, MIT</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Soundscape — Zining Liu</title>
+<meta name="description" content="A two-stage framework for urban sound composition and perceptual prediction">
+<meta property="og:title" content="Urban Soundscape — Zining Liu">
+<meta property="og:description" content="A two-stage framework for urban sound composition and perceptual prediction">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Zining Liu</a>
+    <nav class="nav" aria-label="Primary">
+        <a href="index.html#works">Works</a>
+        <a href="index.html#about">About</a>
+        <a href="mailto:ziningl@mit.edu">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap phero">
+  <button type="button" class="phero__img" data-full="assets/pages/p11.jpg" data-caption="Urban Soundscape — opening page"><img src="assets/art/soundscape.jpg" alt="Line drawing of a city as contour islands, each marked with a sound icon — birdsong, music, traffic, wind, footsteps"></button>
+</section>
+
+<section class="wrap titleblock">
+  <div>
+    <h1>Urban Soundscape</h1>
+    <p class="sub">A two-stage framework for urban sound composition and perceptual prediction</p>
+    <p class="tags">Machine learning, geospatial data, sound source separation, XGBoost, CNN14</p>
+  </div>
+  <dl>
+      <dt>Date</dt><dd>Aug. – Nov. 2025</dd>
+      <dt>Instructor</dt><dd>Da Chen (University of Bath)</dd>
+  </dl>
+  <dl>
+      <dt>Type</dt><dd>Individual work</dd>
+  </dl>
+</section>
+
+<section class="wrap"><p class="note"><b>Note:</b> Built on 40,000 street-view samples, 2,000 crowd-sourced audio recordings and 200 perception ratings.</p></section>
+
+<section class="wrap body">
+  <h2>Abstract</h2>
+  <p>Sound, as a pervasive yet often underrepresented dimension of urban environments, plays a crucial role in shaping everyday experience, environmental comfort and well-being. This project investigates the relationship between urban form, sound composition and human perception, using data-driven methods to make urban soundscapes measurable, predictable and designable. The study begins with large-scale data collection, integrating street-view imagery, environmental audio recordings and structured geospatial information to capture both the physical and acoustic characteristics of urban spaces.</p>
+  <p>Building on this dataset, pre-trained sound source separation and semantic segmentation models are used to decompose audio recordings and extract visual features from street-view images. These features are then combined with land-use and POI data to train machine learning models that predict urban sound source composition. In a second stage, synthesised sound scenes are used to train CNN-based models to predict multidimensional soundscape perception. By linking urban features to both sound composition and perceptual outcomes, this framework supports sound-based urban exploration for the public and provides designers with a predictive tool to inform sound-aware urban design decisions.</p>
+</section>
+
+<section class="wrap plates">
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p11.jpg" data-caption="Project statement">
+          <img src="assets/thumbs/p11.jpg" srcset="assets/thumbs/p11.jpg 760w, assets/pages/p11.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Project statement" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Overview</b> &mdash; Project statement</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p12.jpg" data-caption="Why sound matters in urban research, the six urban sound sources, and the two-stage data-to-perception framework">
+          <img src="assets/thumbs/p12.jpg" srcset="assets/thumbs/p12.jpg 760w, assets/pages/p12.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Why sound matters in urban research, the six urban sound sources, and the two-stage data-to-perception framework" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Introduction &amp; Framework</b> &mdash; Why sound matters in urban research, the six urban sound sources, and the two-stage data-to-perception framework</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p13.jpg" data-caption="Synthesised sound scenes composed from the six sources">
+          <img src="assets/thumbs/p13.jpg" srcset="assets/thumbs/p13.jpg 760w, assets/pages/p13.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Synthesised sound scenes composed from the six sources" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Sound Mixtures</b> &mdash; Synthesised sound scenes composed from the six sources</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p14.jpg" data-caption="Sample sites described by land-use composition and POI density">
+          <img src="assets/thumbs/p14.jpg" srcset="assets/thumbs/p14.jpg 760w, assets/pages/p14.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Sample sites described by land-use composition and POI density" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Land Use &amp; POI</b> &mdash; Sample sites described by land-use composition and POI density</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p15.jpg" data-caption="City-wide prediction of sound source composition via an XGBoost ensemble">
+          <img src="assets/thumbs/p15.jpg" srcset="assets/thumbs/p15.jpg 760w, assets/pages/p15.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="City-wide prediction of sound source composition via an XGBoost ensemble" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Prediction / Composition</b> &mdash; City-wide prediction of sound source composition via an XGBoost ensemble</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p16.jpg" data-caption="CNN prediction of multidimensional soundscape perception — eventful, calm, pleasant, chaotic">
+          <img src="assets/thumbs/p16.jpg" srcset="assets/thumbs/p16.jpg 760w, assets/pages/p16.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="CNN prediction of multidimensional soundscape perception — eventful, calm, pleasant, chaotic" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Prediction / Perception</b> &mdash; CNN prediction of multidimensional soundscape perception — eventful, calm, pleasant, chaotic</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/p17.jpg" data-caption="Street-view segmentation ratios paired with the predicted sound composition">
+          <img src="assets/thumbs/p17.jpg" srcset="assets/thumbs/p17.jpg 760w, assets/pages/p17.jpg 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Street-view segmentation ratios paired with the predicted sound composition" loading="lazy" width="1998" height="1332">
+        </button>
+        <figcaption><b>Feature Attribution</b> &mdash; Street-view segmentation ratios paired with the predicted sound composition</figcaption>
+      </figure>
+</section>
+
+<nav class="wrap pager" aria-label="Project navigation">
+  <a href="liweaving.html">Previous<strong>LiWeaving</strong></a>
+  <a class="r" href="bodymr.html">Next<strong>Humanizing Mixed Reality</strong></a>
+</nav>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="statement">Invisible. Measurable. Designable.</p>
+    <div class="foot__cols">
+      <div>
+        <span>&copy; Zining Liu 2021&ndash;2025.</span>
+        <span>All rights reserved.</span>
+      </div>
+      <div>
+        <a href="mailto:ziningl@mit.edu">ziningl@mit.edu</a>
+      </div>
+      <div>
+        <a href="index.html#works">Works</a>
+        <a href="index.html#about">About</a>
+        <a href="mailto:ziningl@mit.edu">Contact</a>
+      </div>
+      <div>
+        <span>SMArchS Computation, MIT</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
