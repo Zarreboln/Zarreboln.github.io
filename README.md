@@ -26,9 +26,12 @@ assets/
   pages/pNN.jpg       Portfolio page NN rendered at 1998 px wide  (full-res view)
   thumbs/pNN.jpg      Same page at 760 px                        (small screens)
                       Only the pages still referenced are kept in the repo.
-  cards/*.jpg         1200x1200 square tile for each project — the artwork from
-                      that project's own opening page, fitted on white. Index grid.
+  cards/*.jpg         1200x1200 square cover for each project — a square crop of
+                      that project's own opening page, filling the tile edge to
+                      edge. Cut by make_covers.py.
 build.py              Regenerates all seven HTML files from the ENTRIES list inside it
+make_covers.py        Re-cuts assets/cards/*.jpg from the page renders; crop boxes
+                      live in the COVERS dict at the top
 ```
 
 ## View locally
@@ -48,8 +51,11 @@ Structural changes (adding a project, reordering, changing captions): edit the
 
 A project is one dict in `RESEARCH` (numbered 01–04) or `WORKS` (05–06); its
 `plates` list is `(PDF page, short label, caption)`. To add a new project you also
-need its page images in `assets/pages/` + `assets/thumbs/`, and a cover crop in
-`assets/cards/`.
+need its page images in `assets/pages/` + `assets/thumbs/`, and an entry in the
+`COVERS` dict of `make_covers.py` to cut its square cover.
+
+To reframe an existing cover, edit its crop box in `make_covers.py` and re-run it —
+`build.py` does not need to run again unless the project list changed.
 
 ## Deploy to GitHub Pages
 
