@@ -125,50 +125,7 @@ RESEARCH = [
 
 WORKS = [
     dict(
-        slug="plug-in.html", num="05", kind="Selected Work",
-        title="PLUG-IN",
-        sub="A kindergarten plugged into an existing industrial shed",
-        card="plugin.jpg",
-        card_alt="Sectional model of an industrial shed with exposed steel truss, brick walls and inserted white volumes",
-        meta=[("Course", "Architectural Design 3"),
-              ("Term", "2023 Fall"),
-              ("Type", "Studio project")],
-        year="2023", note="",
-        tags="Adaptive reuse, kindergarten, plan and section, physical model",
-        abstract=[
-            "A kindergarten and community activity programme inserted into an existing industrial fabric. The damaged brick wall and the steel truss are kept as found; new lightweight volumes are plugged in between them, so that the old structure stays legible and the new programme reads as an addition rather than a replacement.",
-            "The scheme is tested through plan and section, and through a detailed physical model of the renovated east district.",
-        ],
-        plates=[
-            (27, "Plan & Section", "Floor plan and section of the kindergarten and activity programme"),
-            (28, "Model",          "Model photo of the damaged brick wall after renovation"),
-            (29, "Model",          "Model photos of the renovated east district"),
-        ],
-    ),
-    dict(
-        slug="shelter.html", num="06", kind="Selected Work",
-        title="SHELTER",
-        sub="From vulnerability to resilience — form derived from body motion",
-        card="shelter.jpg",
-        card_alt="White paper model of layered curved walls lit dramatically on a plinth against a black ground",
-        meta=[("Course", "Basis of Architectural Design 2"),
-              ("Term", "2022 Spring"),
-              ("Type", "Studio project")],
-        year="2022", note="",
-        tags="Body-driven form, form-freeze, sectional study, physical model",
-        abstract=[
-            "Six frames of a body in motion — sliding, crouching, turning — are frozen and lofted into a single continuous path. The resulting surface becomes the shelter itself: its section is not composed and then occupied, but derived directly from how a person moves inside it.",
-            "The study runs from body-motion diagrams in plan and elevation, through the form-freeze operation, to sections that register the body at each moment and a final physical model.",
-        ],
-        plates=[
-            (30, "Concept",      "Shelter — from vulnerability to resilience"),
-            (31, "Body Motions", "Body motions in slide and top view"),
-            (32, "Form-Freeze",  "Six frames of a person frozen into a continuous path, and the resulting section"),
-            (33, "Model",        "Model photo and body behaviour in section"),
-        ],
-    ),
-    dict(
-        slug="medusa.html", num="07", kind="Selected Work",
+        slug="medusa.html", num="05", kind="Selected Work",
         title="MEDUSA",
         sub="A folded petal-shell canopy with embedded sensing and light",
         card="medusa.jpg",
@@ -187,7 +144,7 @@ WORKS = [
         ],
     ),
     dict(
-        slug="reading-the-heritage.html", num="08", kind="Selected Work",
+        slug="reading-the-heritage.html", num="06", kind="Selected Work",
         title="Reading the Heritage",
         sub="A timber-frame survey redrawn as an exploded reading",
         card="heritage.jpg",
@@ -365,7 +322,7 @@ idx.append("""<main>
   <div class="cols">
     <div>
       <p>Each project pairs a different set of modalities with a design task. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
-      <p>Earlier design work &mdash; adaptive reuse, body-driven form, a built prototype, a heritage survey &mdash; runs from 2021 to 2023 and sits at the end of the list above.</p>
+      <p>Two earlier pieces &mdash; a built prototype with embedded sensing, and a heritage survey redrawn as an exploded reading &mdash; sit at the end of the list above.</p>
     </div>
     <dl class="facts">
       <dt>Education</dt>
