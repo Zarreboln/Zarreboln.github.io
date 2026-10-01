@@ -9,7 +9,7 @@ from PIL import Image
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 NAME = "Zining Liu"
-ASSET_V = "4"   # bump when an image is replaced, to bypass browser caches
+ASSET_V = "5"   # bump when an image is replaced, to bypass browser caches
 
 NAV = [
     ("liweaving.html",    "01 LiWeaving"),
@@ -26,7 +26,7 @@ RESEARCH = [
         title="UniPS",
         sub="Unified patch similarity unlocks training-free visual place recognition",
         card="vpr.jpg",
-        card_alt="Radar chart of Recall@1 on seventeen place-recognition benchmarks, UniPS against MegaLoc and EffoVPR-ZS",
+        card_alt="Teaser figure of UniPS: trained, prior training-free and our pipelines, training cost against recall, and Recall@1 on 17 benchmarks",
         meta=[("Timeline", "Jun. – Oct. 2026"),
               ("Type", "Individual work"),
               ("Status", "Paper under review")],
@@ -38,11 +38,11 @@ RESEARCH = [
             "On 17 benchmarks UniPS reaches state-of-the-art results on both the 8 standard and the 9 cross-environment sets. On the standard benchmarks it outperforms the best training-free baseline by 12.9 points and edges past the best trained baseline despite the latter’s tens of millions of annotated samples; on the cross-environment benchmarks it leads the best training-free and trained baselines by 7.1 and 11.5 points. The re-ranking module also plugs into existing methods, lifting them by 5.6 to 17.8 points.",
         ],
         plates=[
-            ("vpr_teaser",  "Overview",                 "(A–C) Trained, prior training-free and our pipelines; (D) training cost against mean Recall@1 on standard and cross-environment benchmarks; (E) Recall@1 on all 17 benchmarks against the best trained and training-free baselines"),
-            ("vpr_method",  "Pipeline",                 "A frozen vision encoder extracts patch features; self-similarity scores patch importance (PS-1), weighted second-moment pooling ranks the whole database (PS-2), and MaxSim matching re-ranks the shortlist (PS-3)"),
-            ("vpr_selfsim", "Self-Similarity Weighting", "A Nordland query and its rank-1 retrieval: patches that repeat across the frame are grouped and down-weighted by 1/n, so each scene element counts once however much of the image it fills"),
-            ("vpr_qual",    "Qualitative",              "Rank-1 retrievals under seasonal, day–night, historical and degraded change, against AnyLoc, SAGE, MegaLoc, BoQ, CosPlace and NetVLAD; green is correct, red is wrong"),
-            ("vpr_radar",   "Same Backbone",            "Recall@1 on all 17 benchmarks with every method on a frozen DINOv3 backbone, against SALAD, BoQ and CliqueMining retrained on it"),
+            ("vpr_fig01", "Figure 1",  "Overview and performance (R@1). (A) Trained methods require large-scale labelled datasets, limiting their generalisation to cross-environment settings. (B) Prior training-free methods avoid this training cost and generalise better, but suffer a performance drop on standard VPR benchmarks. (C) Our training-free method instead applies frozen patch features directly, using patch similarity both within and across images for retrieval. (D) Training cost versus performance of our method and baselines on 17 benchmarks, averaged separately across standard and cross-environment VPR benchmarks. (E) Performance of the proposed method against the state-of-the-art trained and training-free baselines."),
+            ("vpr_fig02", "Figure 2",  "Overview of the proposed method. Each image is partitioned into patches, whose features are extracted by a frozen vision encoder, and the patch similarity (PS) template is applied in three forms. PS-1 computes the self-similarity of each image, which gives the weight of every patch; features and weights are computed once and stored for both stages. PS-2 pools the weighted patch features into a second-moment matrix, reduced by whitened PCA (WPCA) to one descriptor per image, and coarse ranking shortlists the K nearest database images. PS-3 performs weighted MaxSim matching between the query and each shortlisted image, and reranking sorts the shortlist by the matching score."),
+            ("vpr_fig03", "Figure 3",  "Patch self-similarity weighting on a Nordland pair (query left, our rank-1 retrieval right). For each image: colour clusters indicate similar patches, and grey patches are more distinctive in the image. The heat maps show the resulting weight w = 1/n. Repetitive patches such as snow, sky and track fall into large clusters and receive low weight, while sparse, distinctive content receives high weight."),
+            ("vpr_fig04", "Figure 4",  "Rank-1 retrievals on 4 benchmarks among the proposed method and other baselines. Green indicates a correct result, and red ones are incorrect results."),
+            ("vpr_fig05", "Figure 5",  "Contribution of each component: performance at R@1 as each component is added."),
         ],
     ),
     dict(
