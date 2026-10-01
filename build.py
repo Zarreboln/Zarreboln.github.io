@@ -202,7 +202,6 @@ def head(title, desc):
 FOOT = """
 <footer class="foot">
   <div class="wrap">
-    <p class="statement">Invisible. Measurable. Designable.</p>
     <div class="foot__cols">
       <div>
         <span>&copy; Zining Liu 2021&ndash;2026.</span>
