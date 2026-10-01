@@ -172,8 +172,7 @@ def e(s):
     return html.escape(s, quote=True)
 
 
-NAV_ITEMS = [("index.html#works", "Works"), ("index.html#about", "About"),
-             ("mailto:ziningl@mit.edu", "Contact")]
+NAV_ITEMS = [("index.html#works", "Works"), ("mailto:ziningl@mit.edu", "Contact")]
 
 
 def head(title, desc):
@@ -219,7 +218,6 @@ FOOT = """
       </div>
       <div>
         <a href="index.html#works">Works</a>
-        <a href="index.html#about">About</a>
         <a href="mailto:ziningl@mit.edu">Contact</a>
       </div>
       <div>
@@ -311,7 +309,6 @@ idx.append("""<main>
 <section class="wrap intro">
   <h1>Zining Liu</h1>
   <p class="bio">I'm a SMArchS Computation student at MIT. My research focuses on artificial intelligence and computational design, with interests in multimodal learning, vision-language models, and agentic systems. I investigate how multimodal information can be integrated to model complex real-world environments and support design decision-making.</p>
-  <p class="bio">The projects below run the full loop: collecting and annotating data, training generative or predictive models or reading frozen ones, and putting the result back in front of people to study how they use it.</p>
 </section>
 
 <section class="wrap" id="works">
@@ -320,24 +317,6 @@ idx.append("""<main>
   </div>
 </section>
 
-<section class="wrap block" id="about">
-  <h2>About</h2>
-  <div class="cols">
-    <div>
-      <p>Each project pairs a different set of modalities with a task. UniPS asks how far a frozen vision foundation model can go on visual place recognition without a single place label, and answers with a pipeline carried entirely by patch similarity. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
-    </div>
-    <dl class="facts">
-      <dt>Education</dt>
-      <dd>SMArchS Computation, MIT</dd>
-      <dt>Interests</dt>
-      <dd>Multimodal learning, visual place recognition, vision&ndash;language models, agentic systems, computational design, human&ndash;AI co-creativity</dd>
-      <dt>Methods</dt>
-      <dd>Frozen foundation-model features, image retrieval and re-ranking, diffusion &amp; GAN models, CLIP / VLM annotation, machine learning on geospatial data, shape grammar, XR, user studies</dd>
-      <dt>Contact</dt>
-      <dd><a href="mailto:ziningl@mit.edu">ziningl@mit.edu</a></dd>
-    </dl>
-  </div>
-</section>
 
 </main>
 """ % "\n".join(card(p) for p in ENTRIES))
