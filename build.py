@@ -26,10 +26,11 @@ RESEARCH = [
         title="UniPS",
         sub="Unified patch similarity unlocks training-free visual place recognition",
         card="vpr.jpg",
+        venue="ICLR 2027 submission (under review)",
         card_alt="Teaser figure of UniPS: trained, prior training-free and our pipelines, training cost against recall, and Recall@1 on 17 benchmarks",
         meta=[("Timeline", "Jun. – Oct. 2026"),
               ("Type", "Individual work"),
-              ("Status", "Paper under review")],
+              ("Status", "ICLR 2027 submission (under review)")],
         year="2026", note="Based on comprehensive evaluation on 17 benchmarks, UniPS achieves state-of-the-art results on both the 8 standard and 9 cross-environment VPR benchmarks.",
         tags="Visual place recognition, training-free, patch similarity, frozen foundation models, DINOv2 / DINOv3",
         abstract=[
@@ -261,14 +262,12 @@ def pager(i):
 
 
 def card(p):
+    venue = ('\n      <p class="card__venue">%s</p>' % e(p["venue"])) if p.get("venue") else ""
     return """    <a class="card" href="%s">
       <div class="card__fig"><img src="assets/cards/%s?v=%s" alt="%s" loading="lazy" width="1200" height="1200"></div>
-      <p class="card__meta">%s <i></i> %s</p>
       <h3>%s</h3>
-      <p class="card__sub">%s</p>
-      <p class="card__tags">%s</p>
-    </a>""" % (p["slug"], p["card"], ASSET_V, e(p["card_alt"]), p["year"], e(p["kind"]),
-               e(p["title"]), e(p["sub"]), e(p["tags"]))
+      <p class="card__sub">%s</p>%s
+    </a>""" % (p["slug"], p["card"], ASSET_V, e(p["card_alt"]), e(p["title"]), e(p["sub"]), venue)
 
 
 # ------------------------------------------------------------- entry pages

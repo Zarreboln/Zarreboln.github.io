@@ -100,10 +100,11 @@ h1,h2,h3,h4{margin:0; font-weight:500; letter-spacing:-.018em; line-height:1.15}
   margin:13px 0 3px; font-size:11px; letter-spacing:.02em; color:var(--ink-3);
 }
 .card__meta i{display:block; width:1px; height:11px; background:#cfcfcf}
-.card h3{font-size:clamp(17px,1.6vw,20px); font-weight:500; margin:2px 0 0}
+.card h3{font-size:clamp(17px,1.6vw,20px); font-weight:500; margin:14px 0 0}
 .card:hover h3{text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}
 .card__sub{margin:5px 0 0; font-size:13.5px; color:var(--ink-2)}
 .card__tags{margin:5px 0 0; font-size:11px; color:var(--ink-3)}
+.card__venue{margin:6px 0 0; font-size:11.5px; letter-spacing:.02em; color:var(--ink-3)}
 @media (max-width:760px){ .grid{grid-template-columns:1fr} }
 
 /* ------------------------------------------------------- section blocks */
