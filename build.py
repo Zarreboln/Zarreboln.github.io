@@ -270,8 +270,8 @@ for i, p in enumerate(ENTRIES):
     rest = p["plates"]
     doc = [head("%s — %s" % (p["title"], NAME), p["sub"])]
     doc.append('<main>\n\n<section class="wrap titleblock">')
-    doc.append("  <div>\n    <h1>%s</h1>\n    <p class=\"sub\">%s</p>\n    <p class=\"tags\">%s</p>\n  </div>"
-               % (e(p["title"]), e(p["sub"]), e(p["tags"])))
+    doc.append("  <div>\n    <h1>%s</h1>\n    <p class=\"sub\">%s</p>\n  </div>"
+               % (e(p["title"]), e(p["sub"])))
     half = (len(p["meta"]) + 1) // 2
     for group in (p["meta"][:half], p["meta"][half:]):
         rows = "".join("      <dt>%s</dt><dd>%s</dd>\n" % (e(k), v) for k, v in group)
