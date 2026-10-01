@@ -29,7 +29,6 @@ RESEARCH = [
         venue="ICLR 2027 submission (under review)",
         card_alt="Teaser figure of UniPS: trained, prior training-free and our pipelines, training cost against recall, and Recall@1 on 17 benchmarks",
         meta=[("Timeline", "Jun. – Oct. 2026"),
-              ("Type", "Individual work"),
               ("Status", "ICLR 2027 submission (under review)")],
         year="2026", note="Based on comprehensive evaluation on 17 benchmarks, UniPS achieves state-of-the-art results on both the 8 standard and 9 cross-environment VPR benchmarks.",
         tags="Visual place recognition, training-free, patch similarity, frozen foundation models, DINOv2 / DINOv3",
@@ -92,8 +91,7 @@ RESEARCH = [
         sub="A two-stage framework for urban sound composition and perceptual prediction",
         card="soundscape.jpg",
         card_alt="Line drawing of a city as contour islands, each marked with a sound icon — birdsong, music, traffic, wind, footsteps",
-        meta=[("Date", "Aug. – Nov. 2025"),
-              ("Type", "Individual work")],
+        meta=[("Date", "Aug. – Nov. 2025")],
         year="2025", note="Built on 40,000 street-view samples, 2,000 crowd-sourced audio recordings and 200 perception ratings.",
         tags="Machine learning, geospatial data, sound source separation, XGBoost, CNN14",
         abstract=[
@@ -144,8 +142,7 @@ RESEARCH = [
         sub="Co-designing with robotic arms of different preferences",
         card="latentagent.jpg",
         card_alt="A small green robotic arm beside a laptop showing a block model, with red, blue and yellow blocks on the table",
-        meta=[("Timeline", "Sep. – Dec. 2025"),
-              ("Type", "Individual work")],
+        meta=[("Timeline", "Sep. – Dec. 2025")],
         year="2025", note="Four participants, three robot preferences, three rounds each.",
         tags="Human–robot interaction, shape grammar, co-design, behavioral preference",
         abstract=[
