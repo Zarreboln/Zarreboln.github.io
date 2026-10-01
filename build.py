@@ -9,7 +9,7 @@ from PIL import Image
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 NAME = "Zining Liu"
-ASSET_V = "3"   # bump when an image is replaced, to bypass browser caches
+ASSET_V = "4"   # bump when an image is replaced, to bypass browser caches
 
 NAV = [
     ("liweaving.html",    "01 LiWeaving"),
@@ -23,26 +23,26 @@ NAV = [
 RESEARCH = [
     dict(
         slug="vpr.html", num="01", kind="Research Project",
-        title="Patches Are Enough",
-        sub="Simple and effective training-free visual place recognition",
+        title="UniPS",
+        sub="Unified patch similarity unlocks training-free visual place recognition",
         card="vpr.jpg",
-        card_alt="Radar chart of Recall@1 across fourteen place-recognition benchmarks, comparing the method against MegaLoc and AnyLoc",
+        card_alt="Radar chart of Recall@1 on seventeen place-recognition benchmarks, UniPS against MegaLoc and EffoVPR-ZS",
         meta=[("Timeline", "Jun. – Oct. 2026"),
               ("Type", "Individual work"),
               ("Status", "Paper under review")],
-        year="2026", note="Evaluated on thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, all under one fixed configuration.",
-        tags="Visual place recognition, foundation models, training-free retrieval, late interaction, DINOv2 / DINOv3",
+        year="2026", note="Evaluated on 17 benchmarks: 8 standard street-view sets and 9 cross-environment sets covering aerial, indoor, subterranean, underwater, seasonal and historical imagery.",
+        tags="Visual place recognition, training-free, patch similarity, frozen foundation models, DINOv2 / DINOv3",
         abstract=[
-            "Visual place recognition asks where a photograph was taken by retrieving the most similar image from a geo-tagged database. Training a representation for it calls for a place-labelled corpus running to tens of millions of images, produces features that shift with the domain, and ties the result to the one backbone it was trained on. Methods built on frozen foundation models avoid all three and need no place label, yet they still trail supervised ones: they choose what to keep from an image by salience, which is not the property that separates places.",
-            "This project removes that criterion and lets the patches of the two images being compared supply every quantity in the pipeline. Two tables of patch-to-patch similarity carry it. The self-similarity of one image weights each patch by how many of that image’s own patches resemble it, in closed form, so a facade of identical windows counts once rather than once per window. The cross-similarity of the pair is reduced two ways: one factoring into a per-image covariance that scans a whole database, the other not factoring and re-ranking a shortlist. Nothing is fitted between the frozen network and the ranking — no codebook, segmentation, learned saliency or place label.",
-            "Across thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, one fixed configuration reaches the highest mean Recall@1, and it is level with the strongest supervised method on the urban benchmarks its supervision targets. As a drop-in scoring rule, it also improves published two-stage pipelines when it replaces their own re-ranker, and single-stage ones when it is added to them.",
+            "Visual place recognition localises an image by retrieving the geo-referenced database image that shows the same place. Most methods are training-based: they learn features from annotated data and do well on standard benchmarks, but require millions of labelled samples, and even then fail on benchmarks that differ from their training set, such as aerial, indoor or underwater imagery. Training-free methods avoid the annotation cost and generalise better, yet they do not fully use the pretrained vision model they sit on, and their features lack the discriminative power to compete on the standard benchmarks.",
+            "UniPS (Unified Patch Similarity) is a training-free pipeline built solely on patch similarity. A frozen backbone extracts patch features, and one signal then carries the whole pipeline: self-similarity within an image scores each patch by how many of that image’s own patches resemble it, so repeated content counts once; weighted second-moment pooling turns the patches into a compact global descriptor for coarse ranking over the database; and cross-image patch similarity re-ranks the shortlist by verifying local correspondence. Nothing is trained and no place label, codebook or saliency prior is used.",
+            "On 17 benchmarks UniPS reaches state-of-the-art results on both the 8 standard and the 9 cross-environment sets. On the standard benchmarks it outperforms the best training-free baseline by 12.9 points and edges past the best trained baseline despite the latter’s tens of millions of annotated samples; on the cross-environment benchmarks it leads the best training-free and trained baselines by 7.1 and 11.5 points. The re-ranking module also plugs into existing methods, lifting them by 5.6 to 17.8 points.",
         ],
         plates=[
-            ("vpr_teaser", "Overview",          "Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration"),
-            ("vpr_method", "Pipeline",          "A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist"),
-            ("vpr_weight", "Why Weight First",  "Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards"),
-            ("vpr_qual",   "Qualitative",       "Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ"),
-            ("vpr_stage2", "Drop-in Re-ranker", "Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks"),
+            ("vpr_teaser",  "Overview",                 "(A–C) Trained, prior training-free and our pipelines; (D) training cost against mean Recall@1 on standard and cross-environment benchmarks; (E) Recall@1 on all 17 benchmarks against the best trained and training-free baselines"),
+            ("vpr_method",  "Pipeline",                 "A frozen vision encoder extracts patch features; self-similarity scores patch importance (PS-1), weighted second-moment pooling ranks the whole database (PS-2), and MaxSim matching re-ranks the shortlist (PS-3)"),
+            ("vpr_selfsim", "Self-Similarity Weighting", "A Nordland query and its rank-1 retrieval: patches that repeat across the frame are grouped and down-weighted by 1/n, so each scene element counts once however much of the image it fills"),
+            ("vpr_qual",    "Qualitative",              "Rank-1 retrievals under seasonal, day–night, historical and degraded change, against AnyLoc, SAGE, MegaLoc, BoQ, CosPlace and NetVLAD; green is correct, red is wrong"),
+            ("vpr_radar",   "Same Backbone",            "Recall@1 on all 17 benchmarks with every method on a frozen DINOv3 backbone, against SALAD, BoQ and CliqueMining retrained on it"),
         ],
     ),
     dict(
@@ -307,7 +307,7 @@ idx.append("""<main>
   <h2>About</h2>
   <div class="cols">
     <div>
-      <p>Each project pairs a different set of modalities with a task. Patches Are Enough asks how far a frozen vision foundation model can go on visual place recognition without a single place label, and answers with a pipeline carried entirely by patch-to-patch similarity. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
+      <p>Each project pairs a different set of modalities with a task. UniPS asks how far a frozen vision foundation model can go on visual place recognition without a single place label, and answers with a pipeline carried entirely by patch similarity. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
     </div>
     <dl class="facts">
       <dt>Education</dt>

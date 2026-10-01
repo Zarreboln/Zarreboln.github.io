@@ -11,7 +11,7 @@ throughout, square corners, hairline frames around every image.
 
 ```
 index.html                 Landing: name, bio, work grid, About
-vpr.html                   01  Patches Are Enough (training-free VPR)
+vpr.html                   01  UniPS (training-free VPR)
 liweaving.html             02  LiWeaving
 soundscape.html            03  Urban Soundscape
 bodymr.html                04  Humanizing Mixed Reality

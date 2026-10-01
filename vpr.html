@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Patches Are Enough — Zining Liu</title>
-<meta name="description" content="Simple and effective training-free visual place recognition">
-<meta property="og:title" content="Patches Are Enough — Zining Liu">
-<meta property="og:description" content="Simple and effective training-free visual place recognition">
+<title>UniPS — Zining Liu</title>
+<meta name="description" content="Unified patch similarity unlocks training-free visual place recognition">
+<meta property="og:title" content="UniPS — Zining Liu">
+<meta property="og:description" content="Unified patch similarity unlocks training-free visual place recognition">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -29,9 +29,9 @@
 
 <section class="wrap titleblock">
   <div>
-    <h1>Patches Are Enough</h1>
-    <p class="sub">Simple and effective training-free visual place recognition</p>
-    <p class="tags">Visual place recognition, foundation models, training-free retrieval, late interaction, DINOv2 / DINOv3</p>
+    <h1>UniPS</h1>
+    <p class="sub">Unified patch similarity unlocks training-free visual place recognition</p>
+    <p class="tags">Visual place recognition, training-free, patch similarity, frozen foundation models, DINOv2 / DINOv3</p>
   </div>
   <dl>
       <dt>Timeline</dt><dd>Jun. – Oct. 2026</dd>
@@ -42,50 +42,50 @@
   </dl>
 </section>
 
-<section class="wrap"><p class="note"><b>Note:</b> Evaluated on thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, all under one fixed configuration.</p></section>
+<section class="wrap"><p class="note"><b>Note:</b> Evaluated on 17 benchmarks: 8 standard street-view sets and 9 cross-environment sets covering aerial, indoor, subterranean, underwater, seasonal and historical imagery.</p></section>
 
 <section class="wrap body">
   <h2>Abstract</h2>
-  <p>Visual place recognition asks where a photograph was taken by retrieving the most similar image from a geo-tagged database. Training a representation for it calls for a place-labelled corpus running to tens of millions of images, produces features that shift with the domain, and ties the result to the one backbone it was trained on. Methods built on frozen foundation models avoid all three and need no place label, yet they still trail supervised ones: they choose what to keep from an image by salience, which is not the property that separates places.</p>
-  <p>This project removes that criterion and lets the patches of the two images being compared supply every quantity in the pipeline. Two tables of patch-to-patch similarity carry it. The self-similarity of one image weights each patch by how many of that image’s own patches resemble it, in closed form, so a facade of identical windows counts once rather than once per window. The cross-similarity of the pair is reduced two ways: one factoring into a per-image covariance that scans a whole database, the other not factoring and re-ranking a shortlist. Nothing is fitted between the frozen network and the ranking — no codebook, segmentation, learned saliency or place label.</p>
-  <p>Across thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, one fixed configuration reaches the highest mean Recall@1, and it is level with the strongest supervised method on the urban benchmarks its supervision targets. As a drop-in scoring rule, it also improves published two-stage pipelines when it replaces their own re-ranker, and single-stage ones when it is added to them.</p>
+  <p>Visual place recognition localises an image by retrieving the geo-referenced database image that shows the same place. Most methods are training-based: they learn features from annotated data and do well on standard benchmarks, but require millions of labelled samples, and even then fail on benchmarks that differ from their training set, such as aerial, indoor or underwater imagery. Training-free methods avoid the annotation cost and generalise better, yet they do not fully use the pretrained vision model they sit on, and their features lack the discriminative power to compete on the standard benchmarks.</p>
+  <p>UniPS (Unified Patch Similarity) is a training-free pipeline built solely on patch similarity. A frozen backbone extracts patch features, and one signal then carries the whole pipeline: self-similarity within an image scores each patch by how many of that image’s own patches resemble it, so repeated content counts once; weighted second-moment pooling turns the patches into a compact global descriptor for coarse ranking over the database; and cross-image patch similarity re-ranks the shortlist by verifying local correspondence. Nothing is trained and no place label, codebook or saliency prior is used.</p>
+  <p>On 17 benchmarks UniPS reaches state-of-the-art results on both the 8 standard and the 9 cross-environment sets. On the standard benchmarks it outperforms the best training-free baseline by 12.9 points and edges past the best trained baseline despite the latter’s tens of millions of annotated samples; on the cross-environment benchmarks it leads the best training-free and trained baselines by 7.1 and 11.5 points. The re-ranking module also plugs into existing methods, lifting them by 5.6 to 17.8 points.</p>
 </section>
 
 <section class="wrap plates">
       <figure class="plate">
-        <button type="button" data-full="assets/pages/vpr_teaser.jpg?v=3" data-caption="Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration">
-          <img src="assets/thumbs/vpr_teaser.jpg?v=3" srcset="assets/thumbs/vpr_teaser.jpg?v=3 760w, assets/pages/vpr_teaser.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
-               alt="Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration" loading="lazy" width="1998" height="1171">
+        <button type="button" data-full="assets/pages/vpr_teaser.jpg?v=4" data-caption="(A–C) Trained, prior training-free and our pipelines; (D) training cost against mean Recall@1 on standard and cross-environment benchmarks; (E) Recall@1 on all 17 benchmarks against the best trained and training-free baselines">
+          <img src="assets/thumbs/vpr_teaser.jpg?v=4" srcset="assets/thumbs/vpr_teaser.jpg?v=4 760w, assets/pages/vpr_teaser.jpg?v=4 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="(A–C) Trained, prior training-free and our pipelines; (D) training cost against mean Recall@1 on standard and cross-environment benchmarks; (E) Recall@1 on all 17 benchmarks against the best trained and training-free baselines" loading="lazy" width="1998" height="1124">
         </button>
-        <figcaption><b>Overview</b> &mdash; Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration</figcaption>
+        <figcaption><b>Overview</b> &mdash; (A–C) Trained, prior training-free and our pipelines; (D) training cost against mean Recall@1 on standard and cross-environment benchmarks; (E) Recall@1 on all 17 benchmarks against the best trained and training-free baselines</figcaption>
       </figure>
       <figure class="plate">
-        <button type="button" data-full="assets/pages/vpr_method.jpg?v=3" data-caption="A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist">
-          <img src="assets/thumbs/vpr_method.jpg?v=3" srcset="assets/thumbs/vpr_method.jpg?v=3 760w, assets/pages/vpr_method.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
-               alt="A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist" loading="lazy" width="1998" height="737">
+        <button type="button" data-full="assets/pages/vpr_method.jpg?v=4" data-caption="A frozen vision encoder extracts patch features; self-similarity scores patch importance (PS-1), weighted second-moment pooling ranks the whole database (PS-2), and MaxSim matching re-ranks the shortlist (PS-3)">
+          <img src="assets/thumbs/vpr_method.jpg?v=4" srcset="assets/thumbs/vpr_method.jpg?v=4 760w, assets/pages/vpr_method.jpg?v=4 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="A frozen vision encoder extracts patch features; self-similarity scores patch importance (PS-1), weighted second-moment pooling ranks the whole database (PS-2), and MaxSim matching re-ranks the shortlist (PS-3)" loading="lazy" width="1998" height="765">
         </button>
-        <figcaption><b>Pipeline</b> &mdash; A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist</figcaption>
+        <figcaption><b>Pipeline</b> &mdash; A frozen vision encoder extracts patch features; self-similarity scores patch importance (PS-1), weighted second-moment pooling ranks the whole database (PS-2), and MaxSim matching re-ranks the shortlist (PS-3)</figcaption>
       </figure>
       <figure class="plate">
-        <button type="button" data-full="assets/pages/vpr_weight.jpg?v=3" data-caption="Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards">
-          <img src="assets/thumbs/vpr_weight.jpg?v=3" srcset="assets/thumbs/vpr_weight.jpg?v=3 760w, assets/pages/vpr_weight.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
-               alt="Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards" loading="lazy" width="1998" height="591">
+        <button type="button" data-full="assets/pages/vpr_selfsim.jpg?v=4" data-caption="A Nordland query and its rank-1 retrieval: patches that repeat across the frame are grouped and down-weighted by 1/n, so each scene element counts once however much of the image it fills">
+          <img src="assets/thumbs/vpr_selfsim.jpg?v=4" srcset="assets/thumbs/vpr_selfsim.jpg?v=4 760w, assets/pages/vpr_selfsim.jpg?v=4 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="A Nordland query and its rank-1 retrieval: patches that repeat across the frame are grouped and down-weighted by 1/n, so each scene element counts once however much of the image it fills" loading="lazy" width="1998" height="364">
         </button>
-        <figcaption><b>Why Weight First</b> &mdash; Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards</figcaption>
+        <figcaption><b>Self-Similarity Weighting</b> &mdash; A Nordland query and its rank-1 retrieval: patches that repeat across the frame are grouped and down-weighted by 1/n, so each scene element counts once however much of the image it fills</figcaption>
       </figure>
       <figure class="plate">
-        <button type="button" data-full="assets/pages/vpr_qual.jpg?v=3" data-caption="Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ">
-          <img src="assets/thumbs/vpr_qual.jpg?v=3" srcset="assets/thumbs/vpr_qual.jpg?v=3 760w, assets/pages/vpr_qual.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
-               alt="Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ" loading="lazy" width="1998" height="1583">
+        <button type="button" data-full="assets/pages/vpr_qual.jpg?v=4" data-caption="Rank-1 retrievals under seasonal, day–night, historical and degraded change, against AnyLoc, SAGE, MegaLoc, BoQ, CosPlace and NetVLAD; green is correct, red is wrong">
+          <img src="assets/thumbs/vpr_qual.jpg?v=4" srcset="assets/thumbs/vpr_qual.jpg?v=4 760w, assets/pages/vpr_qual.jpg?v=4 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Rank-1 retrievals under seasonal, day–night, historical and degraded change, against AnyLoc, SAGE, MegaLoc, BoQ, CosPlace and NetVLAD; green is correct, red is wrong" loading="lazy" width="1998" height="839">
         </button>
-        <figcaption><b>Qualitative</b> &mdash; Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ</figcaption>
+        <figcaption><b>Qualitative</b> &mdash; Rank-1 retrievals under seasonal, day–night, historical and degraded change, against AnyLoc, SAGE, MegaLoc, BoQ, CosPlace and NetVLAD; green is correct, red is wrong</figcaption>
       </figure>
       <figure class="plate">
-        <button type="button" data-full="assets/pages/vpr_stage2.jpg?v=3" data-caption="Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks">
-          <img src="assets/thumbs/vpr_stage2.jpg?v=3" srcset="assets/thumbs/vpr_stage2.jpg?v=3 760w, assets/pages/vpr_stage2.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
-               alt="Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks" loading="lazy" width="1998" height="655">
+        <button type="button" data-full="assets/pages/vpr_radar.jpg?v=4" data-caption="Recall@1 on all 17 benchmarks with every method on a frozen DINOv3 backbone, against SALAD, BoQ and CliqueMining retrained on it">
+          <img src="assets/thumbs/vpr_radar.jpg?v=4" srcset="assets/thumbs/vpr_radar.jpg?v=4 760w, assets/pages/vpr_radar.jpg?v=4 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Recall@1 on all 17 benchmarks with every method on a frozen DINOv3 backbone, against SALAD, BoQ and CliqueMining retrained on it" loading="lazy" width="1998" height="1608">
         </button>
-        <figcaption><b>Drop-in Re-ranker</b> &mdash; Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks</figcaption>
+        <figcaption><b>Same Backbone</b> &mdash; Recall@1 on all 17 benchmarks with every method on a frozen DINOv3 backbone, against SALAD, BoQ and CliqueMining retrained on it</figcaption>
       </figure>
 </section>
 
