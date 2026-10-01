@@ -145,46 +145,7 @@ RESEARCH = [
     ),
 ]
 
-WORKS = [
-    dict(
-        slug="medusa.html", num="06", kind="Selected Work",
-        title="MEDUSA",
-        sub="A folded petal-shell canopy with embedded sensing and light",
-        card="medusa.jpg",
-        card_alt="Illuminated dome of folded white petals over a breadboard and wiring",
-        meta=[("Recognition", "Finalist, China Spatial Art Construction Exhibition"),
-              ("Term", "2022 Fall"),
-              ("Type", "Built prototype")],
-        year="2022", note="Finalist, China Spatial Art Construction Exhibition.",
-        tags="Geodesic geometry, folded shell, embedded sensing, built prototype",
-        abstract=[
-            "A lightweight shell assembled from folded petals over a triangulated geodesic frame. The geometry is developed from a single triangle, subdivided and wrapped into a dome; each petal is a repeated unit that stiffens the surface as it curves.",
-            "The piece was built as a physical prototype with embedded sensing and lighting, and was a finalist in the China Spatial Art Construction Exhibition.",
-        ],
-        plates=[
-            (34, "Prototype & Geometry", "Built prototype and the underlying geometry study"),
-        ],
-    ),
-    dict(
-        slug="reading-the-heritage.html", num="07", kind="Selected Work",
-        title="Reading the Heritage",
-        sub="A timber-frame survey redrawn as an exploded reading",
-        card="heritage.jpg",
-        card_alt="Exploded axonometric of a white timber-frame hall on black, with brackets, beams and ornament drawn as line work beside a phone",
-        meta=[("Course", "Survey of Architecture Heritage"),
-              ("Term", "2023 Fall"),
-              ("Type", "Survey & interface study")],
-        year="2023", note="",
-        tags="Heritage survey, timber frame, exploded axonometric, mobile interface",
-        abstract=[
-            "A measured survey of a traditional timber-frame building, taken apart into an exploded axonometric — brackets, beams, roof and ornament each drawn as a separate component and linked back to its position in the whole.",
-            "The drawing is paired with a mobile interface that lets the same components be read against the building on site, turning the survey from a record into something you can look through.",
-        ],
-        plates=[
-            (35, "Survey", "Exploded axonometric of the timber frame and the mobile reading interface"),
-        ],
-    ),
-]
+WORKS = []
 
 ENTRIES = RESEARCH + WORKS
 
@@ -347,7 +308,6 @@ idx.append("""<main>
   <div class="cols">
     <div>
       <p>Each project pairs a different set of modalities with a task. Patches Are Enough asks how far a frozen vision foundation model can go on visual place recognition without a single place label, and answers with a pipeline carried entirely by patch-to-patch similarity. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
-      <p>Two earlier pieces &mdash; a built prototype with embedded sensing, and a heritage survey redrawn as an exploded reading &mdash; sit at the end of the list above.</p>
     </div>
     <dl class="facts">
       <dt>Education</dt>

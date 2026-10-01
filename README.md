@@ -4,7 +4,7 @@ Static site generated from `Zining's portfolio.pdf` (35 pages, InDesign export).
 No build step is required to view or deploy it — plain HTML, CSS and one small JS file,
 with Inter Tight self-hosted so nothing is fetched from a CDN.
 
-Layout: a landing page with the name, a short bio and a three-column grid of all seven
+Layout: a landing page with the name, a short bio and a three-column grid of all five
 works (two columns under 1040 px, one under 700 px); each work then has its own page —
 three-column title block, abstract, and the portfolio spreads as full-width plates. Pure white ground
 throughout, square corners, hairline frames around every image.
@@ -16,8 +16,6 @@ liweaving.html             02  LiWeaving
 soundscape.html            03  Urban Soundscape
 bodymr.html                04  Humanizing Mixed Reality
 latent-agent.html          05  Latent Agent
-medusa.html                06  MEDUSA
-reading-the-heritage.html  07  Reading the Heritage
 favicon.svg
 assets/
   css/site.css        Whole design system
@@ -30,7 +28,7 @@ assets/
                       Only the pages still referenced are kept in the repo.
   cards/*.jpg         1200x1200 square tile for each project — the artwork from
                       that project's own opening page, fitted on white. Index grid.
-build.py              Regenerates all eight HTML files (needs Pillow) from the ENTRIES list inside it
+build.py              Regenerates all six HTML files (needs Pillow) from the ENTRIES list inside it
 ```
 
 ## View locally
@@ -46,9 +44,9 @@ python3 -m http.server 8000     # then visit http://localhost:8000
 Small text or layout tweaks: edit the `.html` files directly.
 Structural changes (adding a project, reordering, changing captions): edit the
 `PROJECTS` / `OTHER` lists at the top of `build.py`, then run `python3 build.py`
-— it overwrites all eight HTML files. `assets/css/site.css` is never touched by the build.
+— it overwrites all six HTML files. `assets/css/site.css` is never touched by the build.
 
-A project is one dict in `RESEARCH` (numbered 01–05) or `WORKS` (06–07); its
+A project is one dict in `RESEARCH` (numbered 01–05; `WORKS` is kept empty for later use); its
 `plates` list is `(PDF page number or image name, short label, caption)` — an image
 name `foo` resolves to `assets/pages/foo.jpg` + `assets/thumbs/foo.jpg`. To add a new project you also
 need its page images in `assets/pages/` + `assets/thumbs/`, and a cover crop in
