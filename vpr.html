@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patches Are Enough — Zining Liu</title>
+<meta name="description" content="Simple and effective training-free visual place recognition">
+<meta property="og:title" content="Patches Are Enough — Zining Liu">
+<meta property="og:description" content="Simple and effective training-free visual place recognition">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Zining Liu</a>
+    <nav class="nav" aria-label="Primary">
+        <a href="index.html#works">Works</a>
+        <a href="index.html#about">About</a>
+        <a href="mailto:ziningl@mit.edu">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap titleblock">
+  <div>
+    <h1>Patches Are Enough</h1>
+    <p class="sub">Simple and effective training-free visual place recognition</p>
+    <p class="tags">Visual place recognition, foundation models, training-free retrieval, late interaction, DINOv2 / DINOv3</p>
+  </div>
+  <dl>
+      <dt>Timeline</dt><dd>Jun. – Oct. 2026</dd>
+      <dt>Type</dt><dd>Individual work</dd>
+  </dl>
+  <dl>
+      <dt>Status</dt><dd>Paper under review</dd>
+  </dl>
+</section>
+
+<section class="wrap"><p class="note"><b>Note:</b> Evaluated on thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, all under one fixed configuration.</p></section>
+
+<section class="wrap body">
+  <h2>Abstract</h2>
+  <p>Visual place recognition asks where a photograph was taken by retrieving the most similar image from a geo-tagged database. Training a representation for it calls for a place-labelled corpus running to tens of millions of images, produces features that shift with the domain, and ties the result to the one backbone it was trained on. Methods built on frozen foundation models avoid all three and need no place label, yet they still trail supervised ones: they choose what to keep from an image by salience, which is not the property that separates places.</p>
+  <p>This project removes that criterion and lets the patches of the two images being compared supply every quantity in the pipeline. Two tables of patch-to-patch similarity carry it. The self-similarity of one image weights each patch by how many of that image’s own patches resemble it, in closed form, so a facade of identical windows counts once rather than once per window. The cross-similarity of the pair is reduced two ways: one factoring into a per-image covariance that scans a whole database, the other not factoring and re-ranking a shortlist. Nothing is fitted between the frozen network and the ranking — no codebook, segmentation, learned saliency or place label.</p>
+  <p>Across thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, one fixed configuration reaches the highest mean Recall@1, and it is level with the strongest supervised method on the urban benchmarks its supervision targets. As a drop-in scoring rule, it also improves published two-stage pipelines when it replaces their own re-ranker, and single-stage ones when it is added to them.</p>
+</section>
+
+<section class="wrap plates">
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/vpr_teaser.jpg?v=3" data-caption="Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration">
+          <img src="assets/thumbs/vpr_teaser.jpg?v=3" srcset="assets/thumbs/vpr_teaser.jpg?v=3 760w, assets/pages/vpr_teaser.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration" loading="lazy" width="1998" height="1171">
+        </button>
+        <figcaption><b>Overview</b> &mdash; Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/vpr_method.jpg?v=3" data-caption="A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist">
+          <img src="assets/thumbs/vpr_method.jpg?v=3" srcset="assets/thumbs/vpr_method.jpg?v=3 760w, assets/pages/vpr_method.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist" loading="lazy" width="1998" height="737">
+        </button>
+        <figcaption><b>Pipeline</b> &mdash; A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/vpr_weight.jpg?v=3" data-caption="Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards">
+          <img src="assets/thumbs/vpr_weight.jpg?v=3" srcset="assets/thumbs/vpr_weight.jpg?v=3 760w, assets/pages/vpr_weight.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards" loading="lazy" width="1998" height="591">
+        </button>
+        <figcaption><b>Why Weight First</b> &mdash; Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/vpr_qual.jpg?v=3" data-caption="Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ">
+          <img src="assets/thumbs/vpr_qual.jpg?v=3" srcset="assets/thumbs/vpr_qual.jpg?v=3 760w, assets/pages/vpr_qual.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ" loading="lazy" width="1998" height="1583">
+        </button>
+        <figcaption><b>Qualitative</b> &mdash; Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ</figcaption>
+      </figure>
+      <figure class="plate">
+        <button type="button" data-full="assets/pages/vpr_stage2.jpg?v=3" data-caption="Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks">
+          <img src="assets/thumbs/vpr_stage2.jpg?v=3" srcset="assets/thumbs/vpr_stage2.jpg?v=3 760w, assets/pages/vpr_stage2.jpg?v=3 1998w" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks" loading="lazy" width="1998" height="655">
+        </button>
+        <figcaption><b>Drop-in Re-ranker</b> &mdash; Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks</figcaption>
+      </figure>
+</section>
+
+<nav class="wrap pager" aria-label="Project navigation">
+  <a href="index.html">Index<strong>All work</strong></a>
+  <a class="r" href="liweaving.html">Next<strong>LiWeaving</strong></a>
+</nav>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="statement">Invisible. Measurable. Designable.</p>
+    <div class="foot__cols">
+      <div>
+        <span>&copy; Zining Liu 2021&ndash;2026.</span>
+        <span>All rights reserved.</span>
+      </div>
+      <div>
+        <a href="mailto:ziningl@mit.edu">ziningl@mit.edu</a>
+      </div>
+      <div>
+        <a href="index.html#works">Works</a>
+        <a href="index.html#about">About</a>
+        <a href="mailto:ziningl@mit.edu">Contact</a>
+      </div>
+      <div>
+        <span>SMArchS Computation, MIT</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

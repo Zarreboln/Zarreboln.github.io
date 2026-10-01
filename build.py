@@ -5,10 +5,11 @@ All content lives in ENTRIES below. Run `python3 build.py` to rewrite the
 eight HTML files; assets/css/site.css and assets/js/site.js are never touched.
 """
 import os, html
+from PIL import Image
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 NAME = "Zining Liu"
-ASSET_V = "2"   # bump when an image is replaced, to bypass browser caches
+ASSET_V = "3"   # bump when an image is replaced, to bypass browser caches
 
 NAV = [
     ("liweaving.html",    "01 LiWeaving"),
@@ -21,7 +22,31 @@ NAV = [
 
 RESEARCH = [
     dict(
-        slug="liweaving.html", num="01", kind="Research Project",
+        slug="vpr.html", num="01", kind="Research Project",
+        title="Patches Are Enough",
+        sub="Simple and effective training-free visual place recognition",
+        card="vpr.jpg",
+        card_alt="Radar chart of Recall@1 across fourteen place-recognition benchmarks, comparing the method against MegaLoc and AnyLoc",
+        meta=[("Timeline", "Jun. – Oct. 2026"),
+              ("Type", "Individual work"),
+              ("Status", "Paper under review")],
+        year="2026", note="Evaluated on thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, all under one fixed configuration.",
+        tags="Visual place recognition, foundation models, training-free retrieval, late interaction, DINOv2 / DINOv3",
+        abstract=[
+            "Visual place recognition asks where a photograph was taken by retrieving the most similar image from a geo-tagged database. Training a representation for it calls for a place-labelled corpus running to tens of millions of images, produces features that shift with the domain, and ties the result to the one backbone it was trained on. Methods built on frozen foundation models avoid all three and need no place label, yet they still trail supervised ones: they choose what to keep from an image by salience, which is not the property that separates places.",
+            "This project removes that criterion and lets the patches of the two images being compared supply every quantity in the pipeline. Two tables of patch-to-patch similarity carry it. The self-similarity of one image weights each patch by how many of that image’s own patches resemble it, in closed form, so a facade of identical windows counts once rather than once per window. The cross-similarity of the pair is reduced two ways: one factoring into a per-image covariance that scans a whole database, the other not factoring and re-ranking a shortlist. Nothing is fitted between the frozen network and the ranking — no codebook, segmentation, learned saliency or place label.",
+            "Across thirteen benchmarks spanning urban streets, seasonal railways, and degraded, subterranean, indoor, aerial and underwater imagery, one fixed configuration reaches the highest mean Recall@1, and it is level with the strongest supervised method on the urban benchmarks its supervision targets. As a drop-in scoring rule, it also improves published two-stage pipelines when it replaces their own re-ranker, and single-stage ones when it is added to them.",
+        ],
+        plates=[
+            ("vpr_teaser", "Overview",          "Three ways of deciding what an image contributes — place labels, a criterion fixed elsewhere, or the patches themselves; supervision cost against out-of-distribution recall, and Recall@1 on fourteen benchmarks at one fixed configuration"),
+            ("vpr_method", "Pipeline",          "A frozen vision encoder, a per-image self-similarity module that weights each patch in closed form, a second-moment descriptor for coarse ranking over the database, and MaxSim patch interaction for fine ranking of the shortlist"),
+            ("vpr_weight", "Why Weight First",  "Near-duplicate patches stretch a VLAD residual or a covariance toward themselves; down-weighting each duplicate before the sum lets every scene element count once, with no spectral fix needed afterwards"),
+            ("vpr_qual",   "Qualitative",       "Top-1 retrievals under viewpoint, day–night, seasonal, degraded, subterranean, aerial and indoor change, against AnyLoc, SAGE, MegaLoc and BoQ"),
+            ("vpr_stage2", "Drop-in Re-ranker", "Replacing the re-ranker of published two-stage pipelines, or adding one to single-stage pipelines, on nine out-of-distribution benchmarks"),
+        ],
+    ),
+    dict(
+        slug="liweaving.html", num="02", kind="Research Project",
         title="LiWeaving",
         sub="Generative AI for Li brocade design supporting cultural interpretability and creative expression",
         card="liweaving.jpg",
@@ -49,7 +74,7 @@ RESEARCH = [
         ],
     ),
     dict(
-        slug="soundscape.html", num="02", kind="Research Project",
+        slug="soundscape.html", num="03", kind="Research Project",
         title="Urban Soundscape",
         sub="A two-stage framework for urban sound composition and perceptual prediction",
         card="soundscape.jpg",
@@ -73,7 +98,7 @@ RESEARCH = [
         ],
     ),
     dict(
-        slug="bodymr.html", num="03", kind="Research Project",
+        slug="bodymr.html", num="04", kind="Research Project",
         title="Humanizing Mixed Reality",
         sub="Interactive design with behavioral computation",
         card="bodymr.jpg",
@@ -96,7 +121,7 @@ RESEARCH = [
         ],
     ),
     dict(
-        slug="latent-agent.html", num="04", kind="Research Project",
+        slug="latent-agent.html", num="05", kind="Research Project",
         title="Latent Agent",
         sub="Co-designing with robotic arms of different preferences",
         card="latentagent.jpg",
@@ -122,7 +147,7 @@ RESEARCH = [
 
 WORKS = [
     dict(
-        slug="medusa.html", num="05", kind="Selected Work",
+        slug="medusa.html", num="06", kind="Selected Work",
         title="MEDUSA",
         sub="A folded petal-shell canopy with embedded sensing and light",
         card="medusa.jpg",
@@ -141,7 +166,7 @@ WORKS = [
         ],
     ),
     dict(
-        slug="reading-the-heritage.html", num="06", kind="Selected Work",
+        slug="reading-the-heritage.html", num="07", kind="Selected Work",
         title="Reading the Heritage",
         sub="A timber-frame survey redrawn as an exploded reading",
         card="heritage.jpg",
@@ -207,7 +232,7 @@ FOOT = """
     <p class="statement">Invisible. Measurable. Designable.</p>
     <div class="foot__cols">
       <div>
-        <span>&copy; Zining Liu 2021&ndash;2025.</span>
+        <span>&copy; Zining Liu 2021&ndash;2026.</span>
         <span>All rights reserved.</span>
       </div>
       <div>
@@ -232,15 +257,18 @@ FOOT = """
 
 
 def plate(pg, label, caption):
-    src = "assets/pages/p%02d.jpg?v=%s" % (pg, ASSET_V)
-    thumb = "assets/thumbs/p%02d.jpg?v=%s" % (pg, ASSET_V)
+    key = "p%02d" % pg if isinstance(pg, int) else pg
+    src = "assets/pages/%s.jpg?v=%s" % (key, ASSET_V)
+    thumb = "assets/thumbs/%s.jpg?v=%s" % (key, ASSET_V)
+    with Image.open(os.path.join(SITE, "assets/pages/%s.jpg" % key)) as im:
+        w, h = im.size
     return """      <figure class="plate">
         <button type="button" data-full="%s" data-caption="%s">
-          <img src="%s" srcset="%s 760w, %s 1998w" sizes="(max-width: 900px) 92vw, 1160px"
-               alt="%s" loading="lazy" width="1998" height="1332">
+          <img src="%s" srcset="%s 760w, %s %dw" sizes="(max-width: 900px) 92vw, 1160px"
+               alt="%s" loading="lazy" width="%d" height="%d">
         </button>
         <figcaption><b>%s</b> &mdash; %s</figcaption>
-      </figure>""" % (src, e(caption), thumb, thumb, src, e(caption), e(label), e(caption))
+      </figure>""" % (src, e(caption), thumb, thumb, src, w, e(caption), w, h, e(label), e(caption))
 
 
 def pager(i):
@@ -299,13 +327,13 @@ for i, p in enumerate(ENTRIES):
 
 # ------------------------------------------------------------------- index
 idx = [head("Zining Liu",
-            "Selected works of 2021–2025 by Zining Liu — multimodal learning, vision–language models, agentic systems and computational design.")]
+            "Selected works of 2021–2026 by Zining Liu — multimodal learning, vision–language models, agentic systems and computational design.")]
 idx.append("""<main>
 
 <section class="wrap intro">
   <h1>Zining Liu</h1>
   <p class="bio">I'm a SMArchS Computation student at MIT. My research focuses on artificial intelligence and computational design, with interests in multimodal learning, vision-language models, and agentic systems. I investigate how multimodal information can be integrated to model complex real-world environments and support design decision-making.</p>
-  <p class="bio">The projects below run the full loop: collecting and annotating data, training generative or predictive models, and putting the result back in front of people to study how they use it.</p>
+  <p class="bio">The projects below run the full loop: collecting and annotating data, training generative or predictive models or reading frozen ones, and putting the result back in front of people to study how they use it.</p>
 </section>
 
 <section class="wrap" id="works">
@@ -318,16 +346,16 @@ idx.append("""<main>
   <h2>About</h2>
   <div class="cols">
     <div>
-      <p>Each project pairs a different set of modalities with a design task. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
+      <p>Each project pairs a different set of modalities with a task. Patches Are Enough asks how far a frozen vision foundation model can go on visual place recognition without a single place label, and answers with a pipeline carried entirely by patch-to-patch similarity. LiWeaving couples motif images with their cultural semantics through CLIP and a vision&ndash;language model, so that generation is conditioned on meaning rather than style alone. Urban Soundscape learns across street-view imagery, environmental audio and geospatial data to predict both what a place sounds like and how people say it feels. Humanizing Mixed Reality reads tracked bodies as a social-intensity field and generates roof geometry from it. Latent Agent treats the collaborator itself as the variable, studying how a designer adapts when the agent across the table holds preferences it never states.</p>
       <p>Two earlier pieces &mdash; a built prototype with embedded sensing, and a heritage survey redrawn as an exploded reading &mdash; sit at the end of the list above.</p>
     </div>
     <dl class="facts">
       <dt>Education</dt>
       <dd>SMArchS Computation, MIT</dd>
       <dt>Interests</dt>
-      <dd>Multimodal learning, vision&ndash;language models, agentic systems, computational design, human&ndash;AI co-creativity</dd>
+      <dd>Multimodal learning, visual place recognition, vision&ndash;language models, agentic systems, computational design, human&ndash;AI co-creativity</dd>
       <dt>Methods</dt>
-      <dd>Diffusion &amp; GAN models, CLIP / VLM annotation, machine learning on geospatial data, shape grammar, XR, user studies</dd>
+      <dd>Frozen foundation-model features, image retrieval and re-ranking, diffusion &amp; GAN models, CLIP / VLM annotation, machine learning on geospatial data, shape grammar, XR, user studies</dd>
       <dt>Contact</dt>
       <dd><a href="mailto:ziningl@mit.edu">ziningl@mit.edu</a></dd>
     </dl>
